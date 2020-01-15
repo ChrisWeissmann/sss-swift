@@ -39,7 +39,7 @@ func checkKeyLen(key: [UInt8]) throws {
 
 func group(buf: UnsafeMutablePointer<UInt8>, group_size: Int, count: Int) -> [[UInt8]] {
     // Put a buffer of results in a Swift array
-    var grouped:[[UInt8]] = []
+    var grouped: [[UInt8]] = []
     grouped.reserveCapacity(count)
     for i in 0..<count {
         let offset = i * group_size
@@ -97,10 +97,10 @@ public func CombineShares(shares: [[UInt8]]) throws -> [UInt8]? {
     }
 
     // Create data array
-    var dataArray:[UInt8] = Array.init(repeating: 0, count: sss_mlen)
+    var dataArray: [UInt8] = Array.init(repeating: 0, count: sss_mlen)
 
     // Call C API
-    let retcode:Int = cShares.withMemoryRebound(to: sss_Share.self, capacity: k) {
+    let retcode: Int = cShares.withMemoryRebound(to: sss_Share.self, capacity: k) {
         let cInShares = $0
         return dataArray.withUnsafeMutableBufferPointer {
             (cData: inout UnsafeMutableBufferPointer<UInt8>) -> Int in
@@ -158,7 +158,7 @@ public func CombineKeyshares(keyshares: [[UInt8]]) throws -> [UInt8] {
     }
 
     // Create data array
-    var keyArray:[UInt8] = Array.init(repeating: 0, count: 32)
+    var keyArray: [UInt8] = Array.init(repeating: 0, count: 32)
 
     // Call C API
     cKeyshares.withMemoryRebound(to: sss_Keyshare.self, capacity: k) {
